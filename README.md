@@ -117,4 +117,4 @@ Conclusion
 This project demonstrates that data preprocessing is not optional in neural networks.
 Even with the same architecture and hyperparameters, normalization alone can significantly improve performance.
 
-If this were a real production system, Task 1 would be unacceptable.
+
