@@ -1,17 +1,20 @@
-Neural Network Model – Task 1 (Without Normalization)
+Neural Network Model – Task 1 & Task 2
 
-This project implements a Neural Network (ANN / MLP) model using Python and Scikit-learn.
-The model is trained and evaluated without applying any normalization or feature scaling, as required for Task-1.
+This project demonstrates the development and evaluation of a Neural Network (ANN / MLP) model on the given dataset under two conditions:
 
-Objective
+Task 1: Training without normalization
 
-Load and preprocess the given dataset
+Task 2: Training with normalization
 
-Perform basic exploratory data analysis (EDA)
+The comparison highlights the impact of feature scaling on neural network performance.
 
-Train a Neural Network model on raw data
+Objectives
 
-Evaluate model performance using standard metrics
+Build a baseline ANN model without normalization (Task 1)
+
+Apply feature normalization and retrain the same ANN (Task 2)
+
+Compare model performance using the same evaluation metrics
 
 Dataset
 
@@ -21,11 +24,9 @@ Type: Tabular data
 
 Features: All columns except the last
 
-Target: Last column (Bed Form)
+Target Variable: Last column (Bed Form)
 
-Missing Values: Removed
-
-Normalization: ❌ Not applied
+Missing Values: Removed during preprocessing
 
 Tools & Libraries
 
@@ -37,28 +38,21 @@ Pandas
 
 Scikit-learn
 
+Task 1: Model Development (Without Normalization)
+Description
+
+In Task 1, the neural network model is trained using raw, unscaled data.
+This task serves as a baseline to understand ANN performance without feature scaling.
+
 Methodology
 
-Load the dataset using Pandas
+Load dataset
 
-Remove rows with missing values
+Remove missing values
 
-Generate summary statistics for EDA
+Perform basic EDA (summary statistics)
 
 Split data into training and testing sets
-
-Train a Neural Network (MLPClassifier)
-
-Evaluate the model using classification metrics
-
-Model Details
-Parameter	Value
-Model	MLPClassifier
-Hidden Layers	1
-Neurons	16
-Activation	ReLU
-Optimizer	Adam
-Normalization	No
 Evaluation Metrics
 
 Accuracy
@@ -69,16 +63,43 @@ Recall
 
 F1-Score
 
-Observations
+Task 2: Model Development (With Normalization)
+Description
 
-The model works on raw, unscaled data.
+In Task 2, feature normalization is applied to improve learning stability and performance.
+The same ANN architecture and hyperparameters from Task 1 are used to ensure a fair comparison.
 
-Performance is limited due to lack of normalization.
+Normalization Technique
 
-Results serve as a baseline for comparison with normalized models.
+StandardScaler (mean = 0, standard deviation = 1)
+
+Applied after train–test split
+
+Fitted only on training data to avoid data leakage
+
+Methodology
+
+Split data into training and testing sets
+
+Apply normalization to features
+
+Train the same ANN architecture
+
+Evaluate model performance using the same metrics
+Key Observations
+
+Neural networks are sensitive to feature scale.
+
+Normalization improves gradient stability and convergence.
+
+Using the same architecture ensures a fair and valid comparison.
+
+Task 2 consistently outperforms Task 1.
 
 Conclusion
 
-This task demonstrates a baseline neural network model trained without normalization.
-The outcome highlights the importance of feature scaling, which is addressed in the next task.
+This project demonstrates the importance of data preprocessing in neural network models.
+While Task 1 establishes a baseline using raw data, Task 2 shows how normalization significantly improves model performance without changing the network architecture.
+Train ANN without applying normalization
 
+Evaluate model performance
