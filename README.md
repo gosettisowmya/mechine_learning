@@ -1,105 +1,120 @@
-Neural Network Model – Task 1 & Task 2
+Neural Network Classification using MLP
+Project Overview
 
-This project demonstrates the development and evaluation of a Neural Network (ANN / MLP) model on the given dataset under two conditions:
+This project implements a Multilayer Perceptron (MLP) neural network to solve a multi-class classification problem using a structured tabular dataset.
+The goal is to analyze how data preprocessing (normalization) impacts the performance of a neural network.
 
-Task 1: Training without normalization
+The work is divided into two tasks:
 
-Task 2: Training with normalization
+Task 1: MLP without feature scaling
 
-The comparison highlights the impact of feature scaling on neural network performance.
-
-Objectives
-
-Build a baseline ANN model without normalization (Task 1)
-
-Apply feature normalization and retrain the same ANN (Task 2)
-
-Compare model performance using the same evaluation metrics
+Task 2: MLP with feature scaling (Standardization)
 
 Dataset
 
-Format: Excel (.xlsx)
+Input: Numerical feature columns
 
-Type: Tabular data
+Output: Target class (last column in the dataset)
 
-Features: All columns except the last
+Missing values are removed before training.
 
-Target Variable: Last column (Bed Form)
+Dataset is randomly shuffled and split into training and testing sets.
 
-Missing Values: Removed during preprocessing
+Assumption: All features are numerical and suitable for neural network input.
 
-Tools & Libraries
+Task 1 – MLP without Normalization
+Objective
+
+Train an MLP classifier directly on raw feature values and evaluate its performance.
+
+Methodology
+
+Drop missing values
+
+Randomly sample 40% of the dataset (to reduce size)
+
+Split data into:
+
+75% Training
+
+25% Testing
+
+Train an MLPClassifier with:
+
+1 hidden layer (16 neurons)
+
+ReLU activation
+
+Adam optimizer
+
+200 training iterations
+
+Evaluation Metrics
+
+Accuracy
+
+Precision, Recall, F1-score (via Classification Report)
+
+Key Limitation
+
+Neural networks are sensitive to feature scale. Training on unscaled data can:
+
+Slow convergence
+
+Bias learning toward high-magnitude features
+
+Reduce overall accuracy
+
+Task 2 – MLP with Normalization
+Objective
+
+Improve model performance by normalizing input features before training.
+
+Methodology
+
+Same dataset and train–test split as Task 1
+
+Apply StandardScaler
+
+Fit only on training data
+
+Transform both training and test data
+
+Train the same MLP architecture to ensure a fair comparison
+
+Evaluation Metrics
+
+Accuracy
+
+Precision, Recall, F1-score
+
+Why This Matters
+
+Feature scaling:
+
+Stabilizes gradient updates
+
+Improves convergence
+
+Leads to better generalization
+
+Comparison Between Task 1 and Task 2
+
+Task 1 and Task 2 use the same dataset, same train–test split, and identical MLP architecture, ensuring a fair comparison. The only difference is feature normalization. In Task 1, the model is trained on raw, unscaled data, which makes learning sensitive to feature magnitude and leads to unstable gradients and weaker performance. In Task 2, features are standardized using StandardScaler, allowing the neural network to converge faster, learn balanced weights, and generalize better. Any improvement in accuracy and classification metrics in Task 2 is therefore solely attributable to proper data preprocessing, not changes in model complexity or parameters.
+
+Technologies Used
 
 Python
-
-Jupyter Notebook
 
 Pandas
 
 Scikit-learn
 
-Task 1: Model Development (Without Normalization)
-Description
-
-In Task 1, the neural network model is trained using raw, unscaled data.
-This task serves as a baseline to understand ANN performance without feature scaling.
-
-Methodology
-
-Load dataset
-
-Remove missing values
-
-Perform basic EDA (summary statistics)
-
-Split data into training and testing sets
-Evaluation Metrics
-
-Accuracy
-
-Precision
-
-Recall
-
-F1-Score
-
-Task 2: Model Development (With Normalization)
-Description
-
-In Task 2, feature normalization is applied to improve learning stability and performance.
-The same ANN architecture and hyperparameters from Task 1 are used to ensure a fair comparison.
-
-Normalization Technique
-
-StandardScaler (mean = 0, standard deviation = 1)
-
-Applied after train–test split
-
-Fitted only on training data to avoid data leakage
-
-Methodology
-
-Split data into training and testing sets
-
-Apply normalization to features
-
-Train the same ANN architecture
-
-Evaluate model performance using the same metrics
-Key Observations
-
-Neural networks are sensitive to feature scale.
-
-Normalization improves gradient stability and convergence.
-
-Using the same architecture ensures a fair and valid comparison.
-
-Task 2 consistently outperforms Task 1.
+Multilayer Perceptron (MLP)
 
 Conclusion
 
-This project demonstrates the importance of data preprocessing in neural network models.
-While Task 1 establishes a baseline using raw data, Task 2 shows how normalization significantly improves model performance without changing the network architecture.
-Train ANN without applying normalization
+This project demonstrates that data preprocessing is not optional in neural networks.
+Even with the same architecture and hyperparameters, normalization alone can significantly improve performance.
 
-Evaluate model performance
+If this were a real production system, Task 1 would be unacceptable.
